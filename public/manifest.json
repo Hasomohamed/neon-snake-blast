@@ -1,0 +1,21 @@
+{
+  "name": "Neon Snake Blast",
+  "short_name": "Neon Snake",
+  "description": "Experience the classic Snake game with stunning neon graphics and immersive sound effects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00ffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "lang": "en",
+  "dir": "ltr"
+}

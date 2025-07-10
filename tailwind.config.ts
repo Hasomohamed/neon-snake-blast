@@ -61,6 +61,31 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				neon: {
+					cyan: 'hsl(var(--neon-cyan))',
+					'cyan-bright': 'hsl(var(--neon-cyan-bright))',
+					'cyan-dim': 'hsl(var(--neon-cyan-dim))',
+					purple: 'hsl(var(--neon-purple))',
+					'purple-bright': 'hsl(var(--neon-purple-bright))',
+					'purple-dim': 'hsl(var(--neon-purple-dim))',
+					green: 'hsl(var(--neon-green))',
+					'green-bright': 'hsl(var(--neon-green-bright))',
+					'green-dim': 'hsl(var(--neon-green-dim))',
+					pink: 'hsl(var(--neon-pink))',
+					'pink-bright': 'hsl(var(--neon-pink-bright))',
+					'pink-dim': 'hsl(var(--neon-pink-dim))',
+					orange: 'hsl(var(--neon-orange))',
+					'orange-bright': 'hsl(var(--neon-orange-bright))',
+					'orange-dim': 'hsl(var(--neon-orange-dim))'
+				},
+				game: {
+					bg: 'hsl(var(--game-bg))',
+					border: 'hsl(var(--game-border))',
+					snake: 'hsl(var(--snake-body))',
+					'snake-head': 'hsl(var(--snake-head))',
+					food: 'hsl(var(--food))',
+					grid: 'hsl(var(--grid-line))'
 				}
 			},
 			borderRadius: {
