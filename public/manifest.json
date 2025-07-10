@@ -1,7 +1,7 @@
 {
-  "name": "Neon Snake Blast",
-  "short_name": "Neon Snake",
-  "description": "Experience the classic Snake game with stunning neon graphics and immersive sound effects",
+  "name": "Cobra Snake Blast",
+  "short_name": "Cobra Snake",
+  "description": "Experience the classic Snake game as a Cobra with stunning neon graphics and immersive sound effects",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0f",

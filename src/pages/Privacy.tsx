@@ -24,7 +24,7 @@ const Privacy = () => {
 
         <Card className="bg-card/50 backdrop-blur-sm border-neon-cyan/30">
           <CardHeader>
-            <CardTitle className="text-neon-purple">Neon Snake Blast Privacy Policy</CardTitle>
+            <CardTitle className="text-neon-purple">Cobra Snake Blast Privacy Policy</CardTitle>
             <p className="text-sm text-muted-foreground">
               Last updated: {new Date().toLocaleDateString()}
             </p>
@@ -33,7 +33,7 @@ const Privacy = () => {
             <section>
               <h3 className="text-lg font-semibold text-neon-green mb-3">Information We Collect</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Neon Snake Blast is designed with privacy in mind. We do not collect any personal information 
+                Cobra Snake Blast is designed with privacy in mind. We do not collect any personal information 
                 or data from users. All game data including high scores, settings, and statistics are stored 
                 locally on your device using browser local storage.
               </p>
@@ -57,7 +57,7 @@ const Privacy = () => {
             <section>
               <h3 className="text-lg font-semibold text-neon-green mb-3">Third-Party Services</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Neon Snake Blast does not use any third-party analytics, advertising, or tracking services. 
+                Cobra Snake Blast does not use any third-party analytics, advertising, or tracking services. 
                 The game operates entirely offline after initial download.
               </p>
             </section>

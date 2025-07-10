@@ -20,13 +20,13 @@ export const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onOpenSettings 
         {/* Logo/Title */}
         <div className="text-center space-y-4">
           <div className="text-6xl font-bold text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text animate-pulse-neon">
-            NEON
+            COBRA
           </div>
           <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-neon-green via-neon-orange to-neon-cyan bg-clip-text">
             SNAKE
           </div>
           <div className="text-sm text-muted-foreground">
-            Classic gameplay with neon style
+            Classic gameplay with cobra style
           </div>
         </div>
 
