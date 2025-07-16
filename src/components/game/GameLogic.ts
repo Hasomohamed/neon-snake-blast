@@ -16,6 +16,7 @@ export interface GameState {
   mode: 'classic' | 'modern';
   moveProgress: number; // For smooth transitions (0-1)
   lastMoveTime: number; // For timing calculations
+  wallCollision?: boolean; // Track if collision was with wall
 }
 
 export type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
@@ -90,7 +91,7 @@ export class GameLogic {
 
     // Check wall collision
     if (head.x < 0 || head.x >= this.gridSize || head.y < 0 || head.y >= this.gridSize) {
-      return { ...gameState, gameOver: true };
+      return { ...gameState, gameOver: true, wallCollision: true };
     }
 
     // Check self collision

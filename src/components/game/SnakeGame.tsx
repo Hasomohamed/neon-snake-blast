@@ -44,7 +44,11 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
       
       // Check for game over
       if (newState.gameOver && !prevState.gameOver) {
-        soundManager.playGameOverSound();
+        if (newState.wallCollision) {
+          soundManager.playHassanSound();
+        } else {
+          soundManager.playGameOverSound();
+        }
         gameLogic.current.saveGameStats(newState);
         setHighScore(gameLogic.current.getHighScore());
       }

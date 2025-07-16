@@ -66,6 +66,36 @@ export class SoundManager {
     this.createBeep(600, 0.1, 0.08);
   }
 
+  // Play "Hassan" sound using speech synthesis
+  playHassanSound() {
+    if (!this.soundEnabled) return;
+    
+    try {
+      const utterance = new SpeechSynthesisUtterance('Hassan');
+      utterance.rate = 1.2;
+      utterance.pitch = 0.8;
+      utterance.volume = 0.7;
+      
+      // Try to use a male voice if available
+      const voices = speechSynthesis.getVoices();
+      const maleVoice = voices.find(voice => 
+        voice.name.toLowerCase().includes('male') || 
+        voice.name.toLowerCase().includes('david') ||
+        voice.name.toLowerCase().includes('alex')
+      );
+      
+      if (maleVoice) {
+        utterance.voice = maleVoice;
+      }
+      
+      speechSynthesis.speak(utterance);
+    } catch (error) {
+      // Fallback to beep sound if speech synthesis fails
+      this.createBeep(150, 0.5, 0.3);
+      setTimeout(() => this.createBeep(180, 0.3, 0.2), 200);
+    }
+  }
+
   // Enhanced Somali-inspired background music
   startBackgroundMusic() {
     if (!this.musicEnabled || !this.audioContext) return;
