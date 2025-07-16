@@ -66,21 +66,56 @@ export class SoundManager {
     this.createBeep(600, 0.1, 0.08);
   }
 
-  // Background music using simple tones
+  // Background music inspired by Somali traditional music
   startBackgroundMusic() {
     if (!this.musicEnabled || !this.audioContext) return;
     
-    // Simple ambient background loop
-    const playAmbientTone = () => {
-      if (this.musicEnabled && this.audioContext) {
-        this.createBeep(100, 2, 0.02);
-        setTimeout(() => this.createBeep(150, 1.5, 0.015), 2000);
-        setTimeout(() => this.createBeep(120, 1.8, 0.02), 4000);
-        setTimeout(playAmbientTone, 6000);
+    // Somali-inspired pentatonic scale frequencies (C pentatonic)
+    const pentatonicScale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // C, D, E, G, A, C
+    let currentNoteIndex = 0;
+    let rhythmPattern = 0;
+    
+    const playSomaliInspiredMelody = () => {
+      if (!this.musicEnabled || !this.audioContext) return;
+      
+      // Traditional Somali music patterns - alternating rhythms
+      const rhythmPatterns = [
+        [0, 2, 4, 2, 1, 3], // Ascending pattern
+        [4, 2, 0, 1, 3, 5], // Mixed pattern
+        [5, 3, 1, 4, 2, 0], // Descending pattern
+      ];
+      
+      const currentPattern = rhythmPatterns[rhythmPattern % rhythmPatterns.length];
+      const noteIndex = currentPattern[currentNoteIndex % currentPattern.length];
+      const frequency = pentatonicScale[noteIndex];
+      
+      // Play main melody note
+      this.createBeep(frequency, 0.8, 0.03);
+      
+      // Add harmonic drone (typical in Somali music)
+      setTimeout(() => {
+        this.createBeep(frequency * 0.5, 1.2, 0.015);
+      }, 200);
+      
+      // Add rhythmic accent every 4th beat
+      if (currentNoteIndex % 4 === 0) {
+        setTimeout(() => {
+          this.createBeep(frequency * 1.5, 0.3, 0.02);
+        }, 400);
       }
+      
+      currentNoteIndex++;
+      
+      // Change rhythm pattern every 12 beats
+      if (currentNoteIndex % 12 === 0) {
+        rhythmPattern++;
+      }
+      
+      // Continue the loop
+      setTimeout(playSomaliInspiredMelody, 1000);
     };
     
-    playAmbientTone();
+    playSomaliInspiredMelody();
   }
 
   stopBackgroundMusic() {
