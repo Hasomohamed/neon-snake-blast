@@ -14,6 +14,8 @@ export interface GameState {
   speed: number;
   level: number;
   mode: 'classic' | 'modern';
+  moveProgress: number; // For smooth transitions (0-1)
+  lastMoveTime: number; // For timing calculations
 }
 
 export type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
@@ -43,9 +45,11 @@ export class GameLogic {
       score: 0,
       gameOver: false,
       paused: false,
-      speed: mode === 'classic' ? 150 : 200,
+      speed: mode === 'classic' ? 120 : 100, // Faster for smoother feel
       level: 1,
-      mode
+      mode,
+      moveProgress: 0,
+      lastMoveTime: Date.now()
     };
   }
 
@@ -109,7 +113,7 @@ export class GameLogic {
       const foodsPerLevel = gameState.mode === 'classic' ? 5 : 3;
       if (newScore % (foodsPerLevel * (gameState.mode === 'classic' ? 10 : 15)) === 0) {
         newLevel += 1;
-        newSpeed = Math.max(50, newSpeed - 15); // Increase speed, minimum 50ms
+        newSpeed = Math.max(40, newSpeed - 10); // Increase speed, minimum 40ms
       }
     } else {
       newSnake.pop(); // Remove tail if no food eaten
@@ -122,7 +126,23 @@ export class GameLogic {
       direction,
       score: newScore,
       level: newLevel,
-      speed: newSpeed
+      speed: newSpeed,
+      moveProgress: 0, // Reset progress after move
+      lastMoveTime: Date.now()
+    };
+  }
+
+  // New method to update move progress for smooth transitions
+  updateMoveProgress(gameState: GameState): GameState {
+    if (gameState.gameOver || gameState.paused) return gameState;
+
+    const currentTime = Date.now();
+    const timeSinceLastMove = currentTime - gameState.lastMoveTime;
+    const progress = Math.min(timeSinceLastMove / gameState.speed, 1);
+
+    return {
+      ...gameState,
+      moveProgress: progress
     };
   }
 
@@ -154,6 +174,26 @@ export class GameLogic {
 
   resetGame(gameState: GameState): GameState {
     return this.createInitialGameState(gameState.mode);
+  }
+
+  // Enhanced direction change with buffer for precise control
+  queueDirection(gameState: GameState, newDirection: Direction): GameState {
+    const opposites: Record<Direction, Direction> = {
+      'UP': 'DOWN',
+      'DOWN': 'UP',
+      'LEFT': 'RIGHT',
+      'RIGHT': 'LEFT'
+    };
+
+    // Allow immediate direction change if it's not opposite to current direction
+    if (opposites[gameState.direction] !== newDirection) {
+      return {
+        ...gameState,
+        nextDirection: newDirection
+      };
+    }
+
+    return gameState;
   }
 
   getHighScore(): number {

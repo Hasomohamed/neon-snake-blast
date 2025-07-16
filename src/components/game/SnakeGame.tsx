@@ -21,9 +21,10 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
   const [musicEnabled, setMusicEnabled] = useState(soundManager.isMusicEnabled());
   const [highScore, setHighScore] = useState(gameLogic.current.getHighScore());
   const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
+  const animationRef = useRef<number | null>(null);
 
-  // Game loop
-  const gameLoop = useCallback(() => {
+  // Game logic update (discrete movement)
+  const gameLogicUpdate = useCallback(() => {
     setGameState(prevState => {
       if (prevState.gameOver || prevState.paused) {
         return prevState;
@@ -52,14 +53,35 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
     });
   }, []);
 
-  // Start game loop
+  // Animation loop for smooth rendering (runs at 60fps)
+  const animationLoop = useCallback(() => {
+    setGameState(prevState => {
+      if (prevState.gameOver || prevState.paused) {
+        return prevState;
+      }
+      return gameLogic.current.updateMoveProgress(prevState);
+    });
+
+    animationRef.current = requestAnimationFrame(animationLoop);
+  }, []);
+
+  // Start game loops
   useEffect(() => {
     if (!gameState.gameOver && !gameState.paused) {
-      gameLoopRef.current = setInterval(gameLoop, gameState.speed);
+      // Discrete movement loop
+      gameLoopRef.current = setInterval(gameLogicUpdate, gameState.speed);
+      
+      // Smooth animation loop
+      animationRef.current = requestAnimationFrame(animationLoop);
     } else {
       if (gameLoopRef.current) {
         clearInterval(gameLoopRef.current);
         gameLoopRef.current = null;
+      }
+      
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
     }
 
@@ -67,8 +89,11 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
       if (gameLoopRef.current) {
         clearInterval(gameLoopRef.current);
       }
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
-  }, [gameLoop, gameState.speed, gameState.gameOver, gameState.paused]);
+  }, [gameLogicUpdate, animationLoop, gameState.speed, gameState.gameOver, gameState.paused]);
 
   // Keyboard controls
   useEffect(() => {
@@ -108,7 +133,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
         e.preventDefault();
         soundManager.playMoveSound();
         setGameState(prevState => 
-          gameLogic.current.changeDirection(prevState, direction!)
+          gameLogic.current.queueDirection(prevState, direction!)
         );
       }
     };
@@ -117,13 +142,13 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [gameState.gameOver]);
 
-  // Touch controls
+  // Touch controls with improved responsiveness
   const handleTouch = useCallback((direction: Direction) => {
     if (gameState.gameOver) return;
     
     soundManager.playMoveSound();
     setGameState(prevState => 
-      gameLogic.current.changeDirection(prevState, direction)
+      gameLogic.current.queueDirection(prevState, direction)
     );
   }, [gameState.gameOver]);
 
