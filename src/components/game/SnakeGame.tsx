@@ -196,6 +196,16 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
     if (musicEnabled && !gameState.gameOver && !gameState.paused) {
       soundManager.startBackgroundMusic();
     }
+  }, [musicEnabled]);
+
+  // Start background music when component mounts
+  useEffect(() => {
+    if (musicEnabled) {
+      soundManager.startBackgroundMusic();
+    }
+    return () => {
+      soundManager.stopBackgroundMusic();
+    };
   }, []);
 
   return (
