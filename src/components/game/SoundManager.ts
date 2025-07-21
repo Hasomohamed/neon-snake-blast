@@ -96,8 +96,43 @@ export class SoundManager {
     }
   }
 
-  // Enhanced Somali-inspired background music
+  // Play Hassan Aden Samater's Kaban track as background music
   startBackgroundMusic() {
+    if (!this.musicEnabled) return;
+    
+    // Stop any existing background music
+    if (this.backgroundMusic) {
+      this.backgroundMusic.pause();
+      this.backgroundMusic = null;
+    }
+    
+    try {
+      // Create new audio element for Hassan's Kaban track
+      this.backgroundMusic = new Audio('https://somali-music.com/uploads/tracks/580.mp3');
+      this.backgroundMusic.loop = true;
+      this.backgroundMusic.volume = 0.3; // Lower volume for background
+      
+      // Handle loading and play
+      this.backgroundMusic.addEventListener('canplaythrough', () => {
+        if (this.musicEnabled && this.backgroundMusic) {
+          this.backgroundMusic.play().catch(error => {
+            console.warn('Failed to play background music:', error);
+          });
+        }
+      });
+      
+      // Load the audio
+      this.backgroundMusic.load();
+      
+    } catch (error) {
+      console.warn('Failed to load background music:', error);
+      // Fallback to generated music if external file fails
+      this.startGeneratedMusic();
+    }
+  }
+
+  // Fallback generated Somali-inspired music
+  private startGeneratedMusic() {
     if (!this.musicEnabled || !this.audioContext) return;
     
     // Traditional Somali pentatonic scales with additional notes
@@ -211,6 +246,10 @@ export class SoundManager {
 
   stopBackgroundMusic() {
     this.musicEnabled = false;
+    if (this.backgroundMusic) {
+      this.backgroundMusic.pause();
+      this.backgroundMusic = null;
+    }
   }
 
   toggleSound() {
