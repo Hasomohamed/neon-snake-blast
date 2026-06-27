@@ -20,7 +20,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({
   const [soundEnabled, setSoundEnabled] = useState(soundManager.isSoundEnabled());
   const [musicEnabled, setMusicEnabled] = useState(soundManager.isMusicEnabled());
   const [highScore, setHighScore] = useState(gameLogic.current.getHighScore());
-  const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
+  const gameLoopRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const animationRef = useRef<number | null>(null);
 
   // Game logic update (discrete movement)
