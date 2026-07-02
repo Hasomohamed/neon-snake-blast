@@ -18,17 +18,12 @@ export const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onOpenSettings 
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-game-bg via-background to-game-bg p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Logo/Title */}
-        <div className="text-center space-y-4">
-          <div className="text-6xl font-bold text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text animate-pulse-neon">
-            COBRA
-          </div>
-          <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-neon-green via-neon-orange to-neon-cyan bg-clip-text">
-            SNAKE
-          </div>
-          <div className="text-sm text-muted-foreground">
-            Classic gameplay with cobra style
-          </div>
-        </div>
+        <h1 className="text-center text-6xl font-bold text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text animate-pulse-neon">
+          Cobra Snake Game
+        </h1>
+        <p className="text-center text-sm text-muted-foreground">
+          Classic gameplay with cobra style
+        </p>
 
         {/* High Score Display */}
         {highScore > 0 && (
