@@ -43,55 +43,60 @@ export const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onOpenSettings 
         )}
 
         {/* Game Mode Selection */}
-        <div className="space-y-3">
-          <Card className="bg-card/50 backdrop-blur-sm border-neon-cyan/30 hover:border-neon-cyan/50 transition-all duration-300 cursor-pointer group">
-            <CardContent className="p-4">
-              <div 
-                className="flex items-center justify-between"
-                onClick={() => onStartGame('classic')}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-neon-cyan/20 text-neon-cyan group-hover:bg-neon-cyan/30 transition-colors">
-                    <Gamepad2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-neon-cyan">Classic Mode</div>
-                    <div className="text-sm text-muted-foreground">
-                      Traditional Snake experience
+        <section>
+          <h2 className="text-center text-2xl font-bold text-neon-cyan mb-3">
+            Game Modes
+          </h2>
+          <div className="space-y-3">
+            <Card className="bg-card/50 backdrop-blur-sm border-neon-cyan/30 hover:border-neon-cyan/50 transition-all duration-300 cursor-pointer group">
+              <CardContent className="p-4">
+                <div 
+                  className="flex items-center justify-between"
+                  onClick={() => onStartGame('classic')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-neon-cyan/20 text-neon-cyan group-hover:bg-neon-cyan/30 transition-colors">
+                      <Gamepad2 className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-neon-cyan">Classic Mode</div>
+                      <div className="text-sm text-muted-foreground">
+                        Traditional Snake experience
+                      </div>
                     </div>
                   </div>
+                  <Badge variant="outline" className="border-neon-cyan text-neon-cyan">
+                    Start
+                  </Badge>
                 </div>
-                <Badge variant="outline" className="border-neon-cyan text-neon-cyan">
-                  Start
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          <Card className="bg-card/50 backdrop-blur-sm border-neon-purple/30 hover:border-neon-purple/50 transition-all duration-300 cursor-pointer group">
-            <CardContent className="p-4">
-              <div 
-                className="flex items-center justify-between"
-                onClick={() => onStartGame('modern')}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-neon-purple/20 text-neon-purple group-hover:bg-neon-purple/30 transition-colors">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-neon-purple">Modern Mode</div>
-                    <div className="text-sm text-muted-foreground">
-                      Faster pace, higher scoring
+            <Card className="bg-card/50 backdrop-blur-sm border-neon-purple/30 hover:border-neon-purple/50 transition-all duration-300 cursor-pointer group">
+              <CardContent className="p-4">
+                <div 
+                  className="flex items-center justify-between"
+                  onClick={() => onStartGame('modern')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-neon-purple/20 text-neon-purple group-hover:bg-neon-purple/30 transition-colors">
+                      <Zap className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-neon-purple">Modern Mode</div>
+                      <div className="text-sm text-muted-foreground">
+                        Faster pace, higher scoring
+                      </div>
                     </div>
                   </div>
+                  <Badge variant="outline" className="border-neon-purple text-neon-purple">
+                    Start
+                  </Badge>
                 </div>
-                <Badge variant="outline" className="border-neon-purple text-neon-purple">
-                  Start
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
 
         {/* Quick Start Button */}
         <Button
