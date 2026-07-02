@@ -42,6 +42,7 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
           size="icon"
           onClick={onBack}
           className="shrink-0"
+          aria-label="Go back"
         >
           <ArrowLeft className="w-5 h-5" />
         </Button>

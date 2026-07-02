@@ -14,6 +14,7 @@ const Privacy = () => {
             size="icon"
             onClick={() => window.history.back()}
             className="shrink-0"
+            aria-label="Go back"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
@@ -31,7 +32,7 @@ const Privacy = () => {
           </CardHeader>
           <CardContent className="space-y-6 text-sm">
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Information We Collect</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Information We Collect</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Cobra Snake Blast is designed with privacy in mind. We do not collect any personal information 
                 or data from users. All game data including high scores, settings, and statistics are stored 
@@ -40,7 +41,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Data Storage</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Data Storage</h2>
               <p className="text-muted-foreground leading-relaxed">
                 The following data is stored locally on your device:
               </p>
@@ -55,7 +56,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Third-Party Services</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Third-Party Services</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Cobra Snake Blast does not use any third-party analytics, advertising, or tracking services. 
                 The game operates entirely offline after initial download.
@@ -63,7 +64,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Permissions</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Permissions</h2>
               <p className="text-muted-foreground leading-relaxed">
                 The app may request the following permissions:
               </p>
@@ -74,7 +75,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Children's Privacy</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Children's Privacy</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Our game is safe for children. We do not collect any personal information from anyone, 
                 including children under 13 years of age.
@@ -82,7 +83,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Changes to This Policy</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Changes to This Policy</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We may update this privacy policy from time to time. Any changes will be reflected in the 
                 "Last updated" date above. Continued use of the app after any changes constitutes acceptance 
@@ -91,7 +92,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h3 className="text-lg font-semibold text-neon-green mb-3">Contact</h3>
+              <h2 className="text-lg font-semibold text-neon-green mb-3">Contact</h2>
               <p className="text-muted-foreground leading-relaxed">
                 If you have any questions about this privacy policy, please contact us through the app 
                 store where you downloaded the game.
