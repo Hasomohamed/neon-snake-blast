@@ -27,14 +27,19 @@ export const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onOpenSettings 
 
         {/* High Score Display */}
         {highScore > 0 && (
-          <Card className="bg-card/50 backdrop-blur-sm border-neon-purple/30">
-            <CardContent className="p-4 text-center">
-              <div className="flex items-center justify-center gap-2 text-neon-purple">
-                <Trophy className="w-5 h-5" />
-                <span className="font-bold text-lg">Best Score: {highScore}</span>
-              </div>
-            </CardContent>
-          </Card>
+          <section>
+            <h2 className="text-center text-2xl font-bold text-neon-purple mb-3">
+              High Scores
+            </h2>
+            <Card className="bg-card/50 backdrop-blur-sm border-neon-purple/30">
+              <CardContent className="p-4 text-center">
+                <div className="flex items-center justify-center gap-2 text-neon-purple">
+                  <Trophy className="w-5 h-5" />
+                  <span className="font-bold text-lg">Best Score: {highScore}</span>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
         )}
 
         {/* Game Mode Selection */}
