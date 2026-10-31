@@ -14,7 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      products: {
+        Row: {
+          damaged_quantity: number | null
+          product_id: number
+          product_name: string | null
+          retail_price: number | null
+          stock_quantity: number | null
+          wholesale_price: number | null
+        }
+        Insert: {
+          damaged_quantity?: number | null
+          product_id: number
+          product_name?: string | null
+          retail_price?: number | null
+          stock_quantity?: number | null
+          wholesale_price?: number | null
+        }
+        Update: {
+          damaged_quantity?: number | null
+          product_id?: number
+          product_name?: string | null
+          retail_price?: number | null
+          stock_quantity?: number | null
+          wholesale_price?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
